@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}show_entries - Flask{% endblock %}
+{% block head %}
+    {{ super() }}
+    <!--
+    <link href="/static/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <style type="text/css" >
+      .important { color: #336699; }
+    </style>
+    //-->
+    <link href="/static/css/ex10-03.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block content %}
+    <div class="metanav"
+    <i>Welcome,</i>
+	{% if username %}
+		<b>{{ username }}</b> <a href="/logout">logout</a>
+	{% else %}
+		<b>guest </b><a href="/login">login</a>
+	{% endif %}
+    </div>
+
+   <form id="navigation" boder="1">
+     <div id="menu1">
+     {% for item in navigation %}
+     <a href="{{ item.href }}">{{ item.caption }}</a>
+     {% endfor %}
+     </div>
+   </form>
+   {% if entries %}
+   <div class="error">
+	 <ul>{% for entry in entries %}
+	   {{ entry.title }} {{ entry.text }} {{ entry.create_datetime }} {{ entry.modifi_datetime }} {{ entry.author }}
+	   {% endfor %}
+	   </ul>
+   </div>
+   {% else %}
+    <h2>NULL</h2>
+   {% endif %}
+{% endblock %}

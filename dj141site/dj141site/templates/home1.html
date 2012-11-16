@@ -1,0 +1,10 @@
+{# filename:home1.html #}
+{% extends "base.html" %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block body %}
+    <p> welcome: {% if user_id %} <a href="/admin/auth/user/{{user_id}}" >{% endif %}{{body}}!{% if user_id %}</a>{% endif %} </p>
+{% endblock %}

@@ -1,0 +1,31 @@
+{# file:result0.html #}
+{% extends "base.html" %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block body %}
+  {% if books %}
+<br/> <p> Found {{books|length}} book {{ books|pluralize}}.</p>
+      <ul>
+         {% for book in books %}
+         <li> {{book.title}}</li>
+         {%endfor%}
+      </ur>
+   {% else %}
+      <p> No books matched your search sriteria.</p>
+   {% endif %}
+<br/>
+
+  {% if errors %}
+       <p style="color:red;">
+	Please submit a search term 20 characters or shorter.
+	<ul style="color:red;">
+	{% for error in errors %}
+	  <li>{{ error }} </li>
+        {% endfor %}
+        </ul>
+       </p>
+  {% endif %}
+{% endblock %}

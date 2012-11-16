@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block body %}
+<br/> <p> {{body}} of django.mysite </p>
+<br/>
+
+
+<form action="/polls/result1/" method="get">
+    <input type="text" name="q" />
+    <input type="submit" value="result1" />
+</form>
+<br/>
+{% endblock %}
