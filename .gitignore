@@ -1,6 +1,8 @@
 #
 #.gitignore
 #db_bak/
+#
+jquery-*min.js
 *.db
 *.py[cod]
 *~

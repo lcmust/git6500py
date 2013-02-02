@@ -219,7 +219,7 @@ do
        ;;
   esac
 done
-exit 0
+return 0
 }
 
 stop_12345()
@@ -266,7 +266,7 @@ do
        ;;
   esac
 done
-exit 0
+return 0
 }
 
 print_help()
@@ -283,20 +283,21 @@ print_help()
 }
 
 arg_no=$#
-if [ ${arg_no} -lt  2 ]
-then
-    if [ "$1" == "status" ]
-    then
+if [ ${arg_no} -lt  2 ]; then
+    if [ "$1" == "status" -o "$1" == "" ]; then
         status_12345
-    else
+    elif [ "$1" == "-h" -o "$1" == "--help" ]; then
         print_help
     fi
-elif [ "$1" == "start" ]
-then
+elif [ "$1" == "start" ]; then
     shift
     start_12345 $@
-elif [ "$1" == "stop" ]
-then
+elif [ "$1" == "stop" ]; then
     shift
     stop_12345 $@
+elif [ "$1" == "restart" ]; then
+	shift
+	stop_12345 $@
+	sleep 2
+	start_12345 $@
 fi
