@@ -6,5 +6,5 @@
 {% endblock %}
 
 {% block body %}
-    <p> welcome: {% if user_id %} <a href="/admin/auth/user/{{user_id}}" >{% endif %}{{body}}!{% if user_id %}</a>{% endif %} </p>
+    <p> welcome: {% if user_id %} <a href="/admin/auth/user/{{user_id}}" >{% endif %}{{username}}!{% if user_id %}</a>{% endif %} </p>
 {% endblock %}

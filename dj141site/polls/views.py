@@ -8,6 +8,7 @@ from django.template.loader import get_template
 from polls.models import Book
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 import datetime
 
 def env(request):
@@ -85,17 +86,18 @@ def username(request):
         user = "guest"
     else:
         user = request.user
-    return user
 
-def home1(request):
-    from django.contrib.auth.models import User
-    template = get_template('home1.html')
-    now = datetime.datetime.now()
-    user = username(request)
     if user != 'guest' and user:
         user_id = User.objects.get(username=user).id
     else:
         user_id = None
+
+    return user,user_id
+
+def home1(request):
+    template = get_template('home1.html')
+    now = datetime.datetime.now()
+    user, user_id = username(request)
     body = RequestContext(request, {
         'title':'home1',
         'username':user,
@@ -107,26 +109,27 @@ def home1(request):
 #   return HttpResponse(user)
 
 
-@login_required(login_url='/login')
+@login_required(login_url='/polls/login')
 def search1(request):
     #if not request.user.is_authenticated():
     #    return HttpResponseRedirect('/login')
     template = get_template('search1.html')
-    user = username(request)
+    user, user_id = username(request)
     body = RequestContext(request, {
         'title':'search1',
         'username':user,
+        'user_id':user_id or None,
         'body':'body1_search1',
     })
     output = template.render(body)
     return HttpResponse(output)
 
 
-@login_required(login_url='/login')
+#@login_required(login_url='/polls/login')
 def result1(request):
     #if not request.user.is_authenticated():
     #    return HttpResponseRedirect('/login')
-    user = username(request)
+    user, user_id = username(request)
     if 'q' in request.GET and request.GET['q']:
         template = get_template('result1.html')
         q = request.GET['q']
@@ -134,6 +137,7 @@ def result1(request):
         body = RequestContext(request, {
             'title':'result1',
             'username':user,
+            'user_id':user_id or None,
             'books':books,
             'query':q,
         })
@@ -142,21 +146,23 @@ def result1(request):
         body = RequestContext(request, {
             'title':'result1',
             'username':user,
+            'user_id':user_id or None,
             'books':None,
             'query':None,
         })
     output = template.render(body)
     return HttpResponse(output)
 
-@login_required(login_url='/login')
+@login_required(login_url='/polls/login')
 def program1(request):
     #if not request.user.is_authenticated():
     #    return HttpResponseRedirect('/login')
-    user = username(request)
+    user, user_id = username(request)
     template = get_template('program1.html')
     body = RequestContext(request, {
         'title':'program1',
         'username':user,
+        'user_id':user_id or None,
         'body':'body1_program1',
     })
     output = template.render(body)
@@ -164,12 +170,13 @@ def program1(request):
 
 def about1(request):
     template = get_template('about1.html')
-    user = username(request)
+    user, user_id = username(request)
     tmp = request.META.items()
     tmp.sort()
     body = RequestContext(request, {
         'title':'about1',
         'username':user,
+        'user_id':user_id or None,
         'body':tmp,
     })
     output = template.render(body)
@@ -223,7 +230,7 @@ def login(request):
     #return HttpResponse(to_where)
     body = RequestContext(request,{
         'title':'login',
-        'body':'',
+        'body1':'',
         'next':to_where,
     })
     output = template.render(body)
@@ -253,7 +260,7 @@ def login_auth(request):
 
 def logout(request):
     auth.logout(request)
-    return HttpResponseRedirect("/thanks")
+    return HttpResponseRedirect("/polls/thanks")
 
 def register(request):
     template = get_template('register.html')

@@ -4,19 +4,14 @@
 	  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
-    {% block title %}
-    <title> db6sda8-www </title>
-    {% endblock %}
-    {% block title2 %}
-        <!--
-	<link href="/static/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
-	//-->
+    <title>
+	{% block title %}db6sda8-www{% endblock %}
+    </title>
 	<link href="/static1/css/ex10-03.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="/static1/js/jquery-1.7.2.min.js">
     </script>
     <script type="text/javascript" src="/static1/js/js1.js">
     </script>
-    {% endblock %}
   </head>
 
 <body>
@@ -33,11 +28,11 @@
        <td width="19%">
          <i>Welcome:</i> <b>
 	 {% if user_id %}<a href="/admin/auth/user/{{user_id}}">{{username}}</a>
-	   <a href="/logout" class="title_link">注销</a>
-	   <a href="/register" class="title_link">注册</a>
+	   <a href="/polls/logout" class="title_link">注销</a>
+	   <a href="/polls/register" class="title_link">注册</a>
 	   {% else %} guest
-	   <a href="/login" class="title_link">登录</a>
-	   <a href="/register" class="title_link">注册</a>
+	   <a href="/polls/login" class="title_link">登录</a>
+	   <a href="/polls/register" class="title_link">注册</a>
 	 {% endif %}</b>
 
        <td width="20%">
@@ -64,11 +59,13 @@
     <div id="content">
       {% block body %}
       {% endblock %}
+      {% block body1 %}
+      {% endblock %}
     </div>
 
   <div id="footer">
   {% block footer %}
-  <a href="/about1/">About The Site</a>
+  <a href="/polls/about1/">About The Site</a>
   {% endblock %}
   </div>
 

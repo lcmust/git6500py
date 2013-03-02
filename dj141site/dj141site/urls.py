@@ -23,6 +23,7 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
 
     ###my_url:
+    url(r'^$', include('polls.urls')),
     url(r'^app1/', include('app1.urls')),
     url(r'^polls/', include('polls.urls')),
     url(r'^index/$', 'app1.views.index'),

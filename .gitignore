@@ -3,6 +3,7 @@
 #db_bak/
 #
 jquery-*min.js
+flask09/static/js/jquery-*min.js
 *.db
 *.py[cod]
 *~

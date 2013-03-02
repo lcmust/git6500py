@@ -1,14 +1,12 @@
+{# filename: search1.html #}
 {% extends "base.html" %}
-
 
 {% block title %}
     {{ title }}
 {% endblock %}
 
 {% block body %}
-<br/> <p> {{body}} of django.mysite </p>
-<br/>
-
+ <p> {{body}} of django.mysite </p>
 
 <form action="/polls/result1/" method="get">
     <input type="text" name="q" />

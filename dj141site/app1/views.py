@@ -21,3 +21,6 @@ def welcome(request):
         })
     output = template.render(var1)
     return HttpResponse(output)
+
+def show(request):
+    pass

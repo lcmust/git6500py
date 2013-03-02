@@ -1,0 +1,33 @@
+{# filename: create.html #}
+{% extends "base.html" %}
+{% block title %}
+  {{cont.title}}
+{% endblock %}
+{% block content %}
+
+    <div class="metanav"
+    <i>Welcome,</i>
+    {% if username %}
+        <b>{{ username }}</b> <a href="/logout">logout</a>
+    {% else %}
+        <b>guest </b><a href="/login">login</a>
+    {% endif %}
+    </div>
+
+   <form id="navigation" boder="1">
+     <div id="menu1">
+     {% for item in navigation %}
+     <a href="{{ item.href }}">{{ item.caption }}</a>
+     {% endfor %}
+     </div>
+   </form>
+
+
+<form action='/created' method='POST'>
+title:<input  type="text" name="title" id="title">
+<br />
+content:<textarea name="content" rows="10" cols="50"></textarea></p>
+<br />
+<input type="submit" value="submit" />
+</form>
+{% endblock %}

@@ -1,3 +1,4 @@
+{# filename: login.html #}
 {% extends "base.html" %}
 {% block title %}Login Flask{% endblock %}
 {% block head %}
@@ -7,9 +8,38 @@
     </style>
 {% endblock %}
 {% block content %}
+
+    <div class="metanav"
+    <i>Welcome,</i>
+    {% if username %}
+        <b>{{ username }}</b> <a href="/logout">logout</a>
+    {% else %}
+        <b>guest </b><a href="/login">login</a>
+    {% endif %}
+    </div>
+
+   <form id="navigation" boder="1">
+     <div id="menu1">
+     {% for item in navigation %}
+     <a href="{{ item.href }}">{{ item.caption }}</a>
+     {% endfor %}
+     </div>
+   </form>
+
 {% if error %}
 <div class="error">{{ error }}</div>
 {% endif %}
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class="flashes">
+       {% for message in messages %}
+         <li>{{ message }}</li>
+       {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
 <form action='/login' method='POST'>
 input your name:<input  type="text" name="username" id="username">
 <br />
