@@ -16,6 +16,22 @@
 </head>
 <body>
   <div id="content">{% block content %}content....{% endblock %}</div>
+  <div id="test_js"><p>test javaScript....</p></div>
+  <script>
+    function changeContent() {
+        x = document.getElementById("test_js");
+        x.innerHTML = "<p>My First JavaScript Function</p>";
+    }
+    function changeColor() {
+        x = document.getElementById("test_js")
+        x.style.color = "#ffff00";
+        //x.style.color += 1;
+        //alert(x.style.color);
+        x.innerHTML = "<p>" + String(x.style.color) + "</p>";
+    }
+  </script>
+  <button type="button" onclick="changeContent()">Chang content</button>
+  <button type="button" onclick="changeColor()">Chang color</button>
   <div id="footer">{% block footer %}footer....{% endblock %}</div>
 </body>
 </html>

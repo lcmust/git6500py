@@ -18,6 +18,8 @@ headers = {'User-Agent':user_agent}
 values = {'UserName':'admin', 'Password':'admin', }
 datas = urllib.urlencode(values)
 
+
+
 #print values['username'],values['password']
 #print headers
 #req = urllib2.Request(url, data, headers)

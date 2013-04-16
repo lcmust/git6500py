@@ -1,11 +1,17 @@
+#! /usr/bin/python
+#coding=UTF-8
 # -*- coding:utf-8 -*-
+# filename: flask.py
+# author: chengl6500
+# date: 20130404-2100
+###
 #all the imports
 from __future__ import with_statement
 from contextlib import closing
 import sqlite3
 import os
-from flask import Flask, request, session, g, redirect, url_for,\
-	abort, render_template, flash
+from flask import Flask, request, session, g, redirect, url_for, abort, render_template, flash, make_response
+from werkzeug import secure_filename
 
 #configuration
 DATABASE = './sqlite3.db'
@@ -14,6 +20,8 @@ DEBUG = True
 SECRET_KEY = 'development key'
 USERNAME = 'admin'
 PASSWORD = 'admin'
+UPLOAD_FOLDER = os.path.join(os.path.dirname(__file__), 'upload')
+ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
 app = Flask(__name__)
 app.config.from_object(__name__)
@@ -77,14 +85,48 @@ def login_the_user_in(username="None"):
         )
     return render_template("index.html", username=username, navigation=navigation)
 
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1] in app.config['ALLOWED_EXTENSIONS']
+    """
+    print filename.rsplit('.', 1)
+    print filename.rsplit('.', 1)[1]"""
+
+@app.route('/upload', methods=['GET', 'POST'])
+def upload_file():
+    navigation = (
+        {"href":"home", "caption":"home"},
+        {"href":"login", "caption":"login"},
+        {"href":"create", "caption":"create"},
+        {"href":"about", "caption":"about"},
+        {"href":"upload", "caption":"upload_file"}
+        )
+    # g.db = connect_db()
+    if request.method == 'POST':
+        file = request.files['file']
+        print "upload is ", allowed_file(file.filename)
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            flash("upload succeed!")
+            # return redirect('uploaded')
+        else:
+            flash("upload error!")
+    return render_template("upload_file.html", username="guest", navigation=navigation)
+
+
+@app.route('/uploaded')
+def uploaded_file():
+    return "<html><head><title>upload succeed!</title></head><body>Your upload file is succeed!!</body></html>"
+
 @app.route('/')
 @app.route('/home')
 def show_entries():
     navigation = (
         {"href":"home", "caption":"home"},
-        {"href":"about", "caption":"about"},
         {"href":"login", "caption":"login"},
-        {"href":"create", "caption":"create"}
+        {"href":"create", "caption":"create"},
+        {"href":"about", "caption":"about"},
+        {"href":"upload", "caption":"upload_file"}
         )
     # g.db = connect_db()
     g.db = prepare_db()
@@ -152,6 +194,14 @@ def created():
     content["input_title"] = request.form['title']
     content["input_content"] = request.form['content']
     return render_template("created.html", navigation = navigation, cont = content)
+
+@app.route('/myip')
+def response_me():
+    if request:
+        #response = make_response("<html><head><title>make response</title></head><body>Body</body></html>")
+        response = make_response(request.remote_addr)
+    #response.headers['X-parachtes'] = 'parachutes are cool'
+    return response
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
