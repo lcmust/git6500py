@@ -1,0 +1,218 @@
+title {
+    background-color: ;
+    color: ;
+}
+
+table.logo {
+    /*background-color: gray;*/
+    background-color:#f8f8ff; /* rgb(240, 240, 240);*/
+    color: blue;
+    /*border: 0px blue;*/
+    border: 0px;
+    padding: 0px;
+    border-collapse: collapse;
+    position: relative;
+/*left: 30px;
+  top: 10px;
+  */
+}
+
+td.menu {
+    /*background-color: blue;*/
+    color: white;
+    /*border: 1;*/
+    /*border: 0px black;*/
+    border: 0px;
+    border-collapse: collapse;
+    margin: 0;
+    display: inline;
+}
+
+table {
+    border: solid 2px rgb(00, 200, 100);
+    border-collapse: collapse;
+    background-color: rgb(240, 240, 240);
+    padding: 0px;
+    ;
+}
+/**/
+table th {
+    border: solid 1px rgb(110, 110, 110);
+    color: black;
+	background-color: rgb(150, 150, 200);
+}
+
+table tr {
+    background-color: rgb(200, 255, 200);
+}
+
+table td {
+    border: solid 1px rgb(240, 240, 240);
+    /*background-color: rgb(240, 240, 240);*/
+    color: black;
+}
+
+table.content {
+    border: solid 2px rgb(00, 200, 100);
+    border-collapse: collapse;
+    background-color: rgb(240, 240, 240);
+    padding: 0px;
+}
+
+table.content th {
+    border: solid 1px rgb(110, 110, 110);
+    background-color: rgb(200, 200, 200);
+    color: black;
+}
+
+table.content tr {
+    background-color: rgb(100, 200, 100); /*#e0ffff;*/
+    color: blue;
+}
+
+table.content td {
+    border: solid 1px rgb(100, 100, 100);
+    background-color: rgb(240, 248, 255);
+    color: black;
+}
+
+ul.error {
+    background-color: yellow;
+    color: red;
+    list-style-type: none;
+    font-size: 20px;
+}
+
+ul.error li {
+    background-color: white;
+    color: red;
+    list-style-type: none;
+    font-size: 30px;
+}
+
+ul.msg {
+    ;
+}
+
+ul.msg li {
+    color: yellow;
+    list-style-type: none;
+}
+
+.my-form {
+    background-color: gray;
+    width: 23em;
+}
+
+.my-form input {
+    background-color: white;
+}
+
+.my-form .form1 {
+    background-color: rgb(200, 200, 200);
+    width: 100%;
+}
+
+.my-form .form1 label {
+    background-color: rgb(200, 200, 200);
+    color: rgb(200, 100, 10)
+    width: 19em;
+    text-align: right;
+}
+
+.my-form .form1 #input1 {
+    background-color: rgb(200, 100, 10)
+    width: 15em;
+    color: #00cc99;
+}
+
+.my-form .form1 #input2 {
+    background-color: rgb(200, 100, 10)
+    width: 15em;
+    color: #00cccc;
+}
+
+.my-form .form1 #input3 {
+    background-color: rgb(200, 100, 10)
+    width: 15em;
+    color: #00ccff;
+}
+
+.form_odd {
+    background-color: rgb(240, 255, 255); 
+}
+
+.form_even {
+    background-color: rgb(123, 231, 213);
+}
+
+.choice {
+    background-color: rgb(180, 150, 180);
+}
+
+.choiced {
+	background-color: rgb(200, 150, 18 0);
+}
+
+.nav {
+    display: inline;
+}
+
+.menu1 {
+    display: inline;
+}
+
+a {
+    font-family: arial, verdana, sans-serif;
+    font-size: 19px;
+    font-weight: bold;
+}
+
+a:link {
+    color: #0000ff;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #333399;
+    text-decoration: none;
+}
+a:active {
+    color: #0033ff;
+    text-decoration: underline;
+}
+
+a:link:hover {
+    /*background-color: #e99999;*/
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+body {
+    position: relative;
+    top: 0px;
+    /*background-color: #f0f8ff;*/
+    background-color: rgb(240, 255, 255);
+    color: rgb(150, 150, 150);
+}
+
+.table {
+    border: solid 1px rgb(150, 150, 150);
+/*border: 1px;*/
+}
+
+body p {
+    position: relative;
+    top: 0px;
+    background-color: black;
+    color: white;
+}
+
+body p.content {
+    background-color: blue;
+}
+
+.footer {
+    background-color: green;
+    color: red;
+}

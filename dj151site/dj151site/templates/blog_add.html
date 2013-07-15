@@ -1,0 +1,22 @@
+{% extends "base_html5.html" %}
+
+{% block body %}
+<form class="my-form" action="/blog/add/" method=post>{% csrf_token %}
+    <div class="form1">
+    <label for="input1">caption</label>
+    <input type="text" name="caption" id="input1" />
+    </div>
+    <div class="form1">
+    <label for="input2">author</label>
+    <input type="text" name="author" id="input2" />
+    </div>
+    <div class="form1">
+    <label for="input3">content</label>
+    <textarea name="content" id="input3" rows=3 cols=20></textarea>
+    </div>
+    <input type="submit" name="post" value="ok"/>
+</form>
+<script type="text/javascript">
+document.getElementById('input1').focus()
+</script>
+{% endblock %}

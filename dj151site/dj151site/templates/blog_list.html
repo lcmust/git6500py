@@ -1,0 +1,36 @@
+{% extends "base_html5.html" %}
+
+{% block body %}
+{% if authors %}
+<br />You have {{ authors|length }} author(s)
+{% endif %}
+{% if blogs %}
+You have {{ blogs|length }} blog(s)
+{% endif %}
+<table id="content">
+  <tr><th>choice</th><th>caption</th><th>author</th><th>tags</th><th>content</th><th>publish_time</th><th>update_time</th></tr>
+  {% for blog in blogs %}
+  <tr><td><input type="checkbox" value="yes" name="check" /></td><td>{{ blog.caption }}</td><td>{{ blog.author }}</td><td>
+    <ul>
+    {% for tag in blog.tags.all %}
+    <li>{{ tag }}</li>
+    {% endfor %}
+    </ul>
+    </td>
+    <td>{{ blog.content }}</td><td>{{ blog.publish_time }}</td><td>{{ blog.update_time }}</td>
+    </tr>
+  {% endfor %}
+</table>
+{% endblock %}
+
+
+<script language="javascript">
+/*
+var a = document.getElementsByTagName("tr");
+var c
+for (var i = 0; i < a.length; i++) {
+  c = (c == "form_odd")? "form_even":"form_odd";
+  a[i].className = c
+}
+*/
+</script>
