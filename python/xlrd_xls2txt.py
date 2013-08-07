@@ -1,8 +1,8 @@
 #!/usr/bin/python
 #coding=utf8
-#filename:xlrd_xls2txt.py
-#date:20130411-1300
-#auth:chengl6500
+#filename: xlrd_xls2txt.py
+#date: 20130411-1300
+#auth: chengl6500
 """以下数字作为列宽标尺作用
 12345678901234567890123456789012345678901234567890123456789012345678901234567890
 """

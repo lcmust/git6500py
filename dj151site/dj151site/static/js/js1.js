@@ -1,11 +1,4 @@
-//document.write("Hello JavaScript");
 $(document).ready(function() {
-    //alert("abcdefg");
-    /*
-    $("body").click(function() {
-        $(".error").hide();
-    });
-    */
     $("ul.error").click(function() {
         //$(this).hide(600);
         $(this).remove();
@@ -13,12 +6,6 @@ $(document).ready(function() {
     $('tr:nth-child(even)').addClass('form_odd');  //OK
     //$('tr:even').addClass('form_odd');
     $('table.content tr:nth-child(even)').addClass('form_odd');
-    /*  == $('tr:nth-child(even)').addClass('form_odd');
-    odd= {"background":"#EDA", "color":"#3f5"};
-    even= {"background":"#2DA", "color":"#875"};
-    odd_even("#table1", odd, even);
-    odd_even("#table_test", odd, even);
-    */
     $('table#content').find('tr').each(function() {
         var tmp = $(this).css("background-color");
         $(this).bind("mouseenter", function() {
@@ -30,17 +17,50 @@ $(document).ready(function() {
 			$(this).removeClass('choice');
         });
     });
-    //表格中的TR元素按下时，将该行对应的复选框在选中或者空切换，尚未实现
-    $('table#content').find('tr').click(function() {
-        $(this).bind("mousedown", function() {
-			$(this).toggleClass('choiced');
-            /*$(this).find('td:first').attr('value', 0);*/
-			/*alert($(this).find('td:first').find('input').val());
-			*/
-        });
+    //当表格前的复选框选中后，该栏增加特殊颜色，取消选择后，颜色也取消
+    $(":checkbox").click(function() {
+        chkbox_attr = $(this).attr('checked');
+        
+        if (chkbox_attr == "checked") {
+            $(this).parent().parent().addClass('choiced');
+        } else {
+            $(this).parent().parent().removeClass('choiced');
+        };
+        //alert(chkbox_attr);
+        //alert($(this).parent().parent().html());
     });
-    $().everyTime("2s", 'timeA', js_test, 2);
+    //将标题栏以上位置固定在当前页面中？？？？？？？？20130719-2300
+    // $().everyTime("2s", 'timeA', js_test, 2);  //????????
+
+    $("#id_validate").click(function() {
+        //loadAjax();
+        var s = Math.random()*10;
+        $("#validate_img").attr("src", "");
+        htmlobj = $.ajax({url:"/blog/validate/?md=" + s , async:false});
+        $("#validate_img").attr("src", "/blog/validate/");
+
+    });
+
+    $('#id_pwd').click(function() {
+        alert("hello");
+    });
+
+
 });
+
+function loadAjax() 
+{
+    htmlobj = $.ajax({url:"/blog/now/", async:false});
+    $("#myDiv").html(htmlobj.responseText);
+    // xmlhttp.onreadystatechange = function() {
+    //     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+    //         //document.getElementById("login_validate").innerHTML = xmlhttp.responseXML;
+    //         xmlDoc = xmlhttp.responseXML;
+            
+    //     }
+    // }
+
+}
 
 function js_test() {
     alert("aaaa");

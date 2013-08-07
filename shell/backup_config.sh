@@ -1,8 +1,8 @@
 #!/bin/bash
 # cmd: sudo this_file.sh
 # 
-back_home=".tmux.conf .gitconfig .emacs .emacs_custom.el .hgrc .chengl6500.rc .rules_arptables.txt .rules_iptables.txt .vimrc .bashrc .zshrc .remmina/ .ssh/"
-back_sys="profile profile_golang.sh sudoers auto.misc auto.master samba/ iet/ NetworkManager/ sources.list apt/ default/"
+back_home=".tmux.conf .gitconfig .emacs .emacs_custom.el .hgrc .chengl6500.rc .rules_arptables.txt .rules_iptables.txt .vimrc .bashrc .zshrc .irssi .remmina/ .ssh/ .config/xfce4/ .config/Terminal/"
+back_sys="fstab profile profile_golang.sh profile_jdk7u2.sh profile_xmodmap sudoers auto.misc auto.master xdg/ samba/ iet/ NetworkManager/ apt/ default/"
 bak_dir_home="/mnt/sda2h/tools/git1/git_config.bak/home_user/"
 bak_dir_sys="/mnt/sda2h/tools/git1/git_config.bak/sys_etc/"
 ### bak_dir_home="/tmp/test/home"
