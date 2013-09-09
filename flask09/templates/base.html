@@ -5,17 +5,19 @@
 <head>
   {% block head %}
   <link rel="stylesheet" href="/static/css/ex10-03.css" />
-  <title>{% block title %}base - Flask{% endblock %}</title>
-
+  <title>
+  {% block title %}base - Flask{% endblock %}
+  </title>
   <script type="text/javascript" src="/static/js/jquery-1.7.2.min.js">
   </script>
   <script type="text/javascript" src="/static/js/js1.js">
   </script>
-
   {% endblock %}
 </head>
 <body>
-  <div id="content">{% block content %}content....{% endblock %}</div>
+  <div id="content">
+  {% block content %}content....{% endblock %}
+  </div>
   <div id="test_js"><p>test javaScript....</p></div>
   <script>
     function changeContent() {

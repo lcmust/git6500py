@@ -14,29 +14,20 @@
     <script src="/static_blog/js/js1.js"></script>
     {% endblock %}
   </head>
-  <body>
-    <!--在TABLE中集成菜单停用，改为下面的UL和LI
-    <table class="logo">
-      <tr><td class="menu">logo1</td></tr>
-      <tr><td class="menu">
-      {% if menus %}
-        {% for menu in menus %}
-        {# <td><a href="{% url 'blogadd' %}">{{ menu }}</a></td> #}
-        <a href="/blog/{{ menu }}">{{ menu }}</a>
-        {% endfor %}
-      {% else %}
-        <a href="#">empty</a>
-      {% endif %}
-      </td></tr>
-    </table>
-    -->
-    <div id="nav">
-      <ul id="menu">
+  <body onload='window.setTimeout("rotateBanner();", 3000);'>
+    <div class="fix_table">
+      <ul class="menu1">
       {% for menu in menus %}
-      <li class="menu1"><a href="/blog/{{ menu }}">{{ menu }}</a></li>
+      <li class="menu1"><a class="menu" href="/blog/{{ menu }}">{{ menu }}</a></li>
       {% endfor %}
       </ul>
+    <span id="clock" size="35"></span>
+    <!--
+    <button id="clock1" onclick="window.clearInterval(noClock)">Stop Clock</button>
+    <button id="clock2" onclick="noClock=window.setInterval('clock()', 1000)">Continue Clock</button>
+    -->
     </div>
+
     {% block msg_errors %}
     {% if errors %}
     <ul class="error">
@@ -52,13 +43,16 @@
     </ul>
     {% endif %}
     {% endblock %}
-    <span class="main">here is contents.
-    </span>
+    <!-- for develop of css test!!!!
+    <span class="fix_table">here is contents.</span>
+    -->
+    <img src="/static_blog/img/news1.gif" alt='news.gif' id='news_gif' class="fix_table"/>
     <br />
     {% block body %}
     {% endblock %}
+
     {% block body2 %}
-    <table><!-- id="table_test" -->
+    <table class="content"><!-- id="table_test" -->
       <tr><th>h1</th><th>h2</th><th>h3</th></tr>
       <tr><td>d1</td><td>d2</td><td>d3</td></tr>
       <tr><td>e1</td><td>e2</td><td>d3</td></tr>
@@ -68,18 +62,26 @@
       <tr><td>e1</td><td>e2</td><td>d3</td></tr>
     </table>
     {% endblock %}
+
     {% block client_info %}
-    <p class="content">here is body p.class="content"</p>
+    <div class="box">
+    <span class="fix_table22">here is body p.class="content"</span>
+    </div>
     {% if client_info %}
-    <div class="footer">
-      <table>
+      <table class="content">
         {% for k,v in client_info.items %}
         <tr><th>{{ k }}</th><td>{{ v }}</td></tr>
         {% endfor %}
       </table>
+    <div class="footer">
+      Copyright of <a href="#">XXXX</a>. About <a href="#">YYYY</a>.
     </div>
-
+    <div class="fixed">
+      Hello, 暂时不要太关注我哦。
+    </div>
+    <button onclick="web_client">check</button>
     {% endif %}
     {% endblock %}
+
   </body>
 </html>

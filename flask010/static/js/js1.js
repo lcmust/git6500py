@@ -4,9 +4,14 @@ $(document).ready(function() {
         $(this).remove();
     });
     $('tr:nth-child(even)').addClass('form_odd');  //OK
+	$('table.content').click(function() {
+		//$(this).find('tr:even').addClass('form_odd');
+		//js_test();
+	});
+
     //$('tr:even').addClass('form_odd');
-    $('table.content tr:nth-child(even)').addClass('form_odd');
-    $('table#content').find('tr').each(function() {
+    //$('table.content tr:nth-child(even)').addClass('form_odd');
+    $('table.content').find('tr').each(function() {
         var tmp = $(this).css("background-color");
         $(this).bind("mouseenter", function() {
             //$(this).css("background-color", choice); //OK
@@ -20,7 +25,7 @@ $(document).ready(function() {
     //当表格前的复选框选中后，该栏增加特殊颜色，取消选择后，颜色也取消
     $(":checkbox").click(function() {
         chkbox_attr = $(this).attr('checked');
-        
+
         if (chkbox_attr == "checked") {
             $(this).parent().parent().addClass('choiced');
         } else {
@@ -48,18 +53,10 @@ $(document).ready(function() {
 
 });
 
-function loadAjax() 
+function loadAjax()
 {
     htmlobj = $.ajax({url:"/blog/now/", async:false});
     $("#myDiv").html(htmlobj.responseText);
-    // xmlhttp.onreadystatechange = function() {
-    //     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-    //         //document.getElementById("login_validate").innerHTML = xmlhttp.responseXML;
-    //         xmlDoc = xmlhttp.responseXML;
-            
-    //     }
-    // }
-
 }
 
 function js_test() {

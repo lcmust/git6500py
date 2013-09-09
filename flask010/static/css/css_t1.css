@@ -3,43 +3,42 @@ title {
     color: ;
 }
 
-table.logo {
-    /*background-color: gray;*/
-    background-color:#f8f8ff; /* rgb(240, 240, 240);*/
-    color: blue;
-    /*border: 0px blue;*/
-    border: 0px;
-    padding: 0px;
-    border-collapse: collapse;
-    position: relative;
-/*left: 30px;
-  top: 10px;
-  */
+
+.fix_table {
+	margin-left: 20pt;
+	margin-right: 20pt;
 }
 
-td.menu {
-    /*background-color: blue;*/
-    color: white;
-    /*border: 1;*/
-    /*border: 0px black;*/
-    border: 0px;
-    border-collapse: collapse;
-    margin: 0;
-    display: inline;
+.fixed {   //wait to learn????
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	width: 200px;
+	background-color: white;
+}
+
+div.box {
+	background-color: #eeeeee;
+	border: 2px solid #19619a;
+	margin: 20pt;
+	padding: 20pt;
 }
 
 table {
     border: solid 2px rgb(00, 200, 100);
     border-collapse: collapse;
     background-color: rgb(240, 240, 240);
-    padding: 0px;
-    ;
+    padding: 1px;
+	margin-left: 20pt;
+	margin-right: 20pt;
+	width: 800px;
+	//????align: center;
 }
 
 table th {
     border: solid 1px rgb(110, 110, 110);
     color: black;
-	background-color: rgb(150, 150, 200);
+	//background-color: rgb(150, 150, 200);
 }
 
 table tr {
@@ -48,7 +47,7 @@ table tr {
 
 table td {
     border: solid 1px rgb(240, 240, 240);
-    /*background-color: rgb(240, 240, 240);*/
+    //background-color: rgb(240, 240, 240);
     color: black;
 }
 
@@ -57,22 +56,23 @@ table.content {
     border-collapse: collapse;
     background-color: rgb(240, 240, 240);
     padding: 0px;
+	width: 400px;
 }
 
 table.content th {
     border: solid 1px rgb(110, 110, 110);
-    background-color: rgb(200, 200, 200);
+    //background-color: rgb(200, 200, 200);
     color: black;
 }
 
 table.content tr {
-    background-color: rgb(100, 200, 100); /*#e0ffff;*/
+    //background-color: rgb(230, 250, 235);
     color: blue;
 }
 
 table.content td {
-    border: solid 1px rgb(100, 100, 100);
-    background-color: rgb(240, 248, 255);
+    border: solid 1px rgb(240, 240, 240);
+    //background-color: rgb(240, 248, 255);
     color: black;
 }
 
@@ -107,7 +107,7 @@ ul.login {
     color: black;
     text-aligh: center;
     text-indent: 2px;
-    font-family: 
+    font-family:
     font-size: 20px;
     font-weight: bold;
 
@@ -173,32 +173,54 @@ ul.login {
 }
 
 .menu1 {
-    display: inline;
-}
-
-a {
-    font-family: arial, verdana, sans-serif;
-    font-size: 19px;
-    font-weight: bold;
+    display: inline; //: inline;
+	background-color: #ddeeff;
+	width: 200px;
+	height: 100px;
+	margin: 2px;
 }
 
 a:link {
+    //color: #0000ff;
+    //text-decoration: none;
+}
+
+a:visited {
+    //color: #aa00aa;
+    //text-decoration: none;
+}
+
+a:active {
+	//background-color: #aaaaaa;
+    //color: #ffffff;
+    //text-decoration: underline;
+}
+
+a:link:hover {
+    //background-color: #ffffff;
+    //color: #aa00aa;
+    //text-decoration: underline;
+}
+
+a.menu:link {
     color: #0000ff;
     text-decoration: none;
 }
 
-a:visited {
-    color: #333399;
+a.menu:visited {
+    color: #aa00aa;
     text-decoration: none;
 }
-a:active {
-    color: #0033ff;
+
+a.menu:active {
+	background-color: #aaaaaa;
+    color: #ffffff;
     text-decoration: underline;
 }
 
-a:link:hover {
-    /*background-color: #e99999;*/
-    color: #ffffff;
+a.menu:link:hover {
+    background-color: #ffffff;
+    color: #aa00aa;
     text-decoration: underline;
 }
 
@@ -212,7 +234,7 @@ body {
 
 .table {
     border: solid 1px rgb(150, 150, 150);
-/*border: 1px;*/
+	//border: 1px;
 }
 
 body p {
@@ -227,6 +249,7 @@ body p.content {
 }
 
 .footer {
-    background-color: green;
+    //background-color: green;
     color: red;
+	text-align: center;
 }

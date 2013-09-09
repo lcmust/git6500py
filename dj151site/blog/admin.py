@@ -8,7 +8,12 @@ class BlogAdmin(admin.ModelAdmin):
     search_fields = ['caption']
     date_hierarchy = 'publish_time'
 
+class AuthorAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name', 'sex')
+
+class TagAdmin(admin.ModelAdmin):
+    list_display = ('id', 'tag_name', 'create_time')
+
 admin.site.register(Blog, BlogAdmin)
-admin.site.register(Author)
-#admin.site.register(Blog)
-admin.site.register(Tag)
+admin.site.register(Author, AuthorAdmin)
+admin.site.register(Tag, TagAdmin)

@@ -25,7 +25,7 @@ class WriteXls2003():
 
         if not os.path.exists(txt_file):
             return
-        
+
         if os.path.exists(xls_file):
             xls_file_bak = xls_file + time.strftime("%Y%m%d_%H%M%S")
             os.rename(xls_file, xls_file_bak)
@@ -117,8 +117,8 @@ if __name__ == "__main__":
 
 """
 -------------NEW--------
-end@ Mon Jul 29 18:13:45 2013 
-save@ Mon Jul 29 18:13:42 2013 
+end@ Mon Jul 29 18:13:45 2013
+save@ Mon Jul 29 18:13:42 2013
 start@ Mon Jul 29 18:13:19 2013
 ===============OLD=====
 -rw-r--r-- 1 love love 78176392  7月  6 22:31 scxhedu_ex130706.log

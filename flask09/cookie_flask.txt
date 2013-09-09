@@ -1,0 +1,5 @@
+# Netscape HTTP Cookie File
+# http://www.netscape.com/newsref/std/cookie_spec.html
+# This is a generated file!  Do not edit.
+
+127.0.0.1	FALSE	/	FALSE		session	eyJ1c2VybmFtZSI6eyIgYiI6IllXUnRhVzQ9In19.BOzaMA.kqOeMJIB1599k4VzwUaPK6IG5JA

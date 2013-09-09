@@ -1,3 +1,4 @@
+{# filename: show_entries.html #}
 {% extends "base.html" %}
 {% block title %}show_entries - Flask{% endblock %}
 {% block head %}
@@ -13,8 +14,8 @@
 {% block content %}
     <div class="metanav"
     <i>Welcome,</i>
-	{% if username %}
-		<b>{{ username }}</b> <a href="/logout">logout</a>
+	{% if login_data %}  {# username #}
+		<b>{{ login_data.username }}</b> <a href="/logout">logout</a>
 	{% else %}
 		<b>guest </b><a href="/login">login</a>
 	{% endif %}
@@ -27,12 +28,32 @@
      {% endfor %}
      </div>
    </form>
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class="flashes">
+       {% for message in messages %}
+         <li>{{ message }}</li>
+       {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
    {% if entries %}
    <div class="error">
-	 <ul>{% for entry in entries %}
-	   {{ entry.title }} {{ entry.text }} {{ entry.create_datetime }} {{ entry.modifi_datetime }} {{ entry.author }}
+	 <table class="content">
+       <tr><th>id</th><th>title</th><th>text</th><th>create</th><th>modifi</th><th>author</th></tr>
+       {% for entry in entries %}
+       <tr>
+         <td>{{ entry.id }}</td>
+         <td>{{ entry.title }}</td>
+         <td>{{ entry.text }}</td>
+         <td>{{ entry.create_datetime }}</td>
+         <td>{{ entry.modifi_datetime }}</td>
+         <td> {{ entry.author }}</td>
+       </tr>
 	   {% endfor %}
-	   </ul>
+	   </table>
    </div>
    {% else %}
     <h2>NULL</h2>

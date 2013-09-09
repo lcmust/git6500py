@@ -2,15 +2,26 @@
 #coding=utf-8
 # -*- coding: utf-8 -*-
 # Create your views here.
-from django.http import Http404, HttpResponse,HttpResponseRedirect
+from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response
-from django.template import Context,RequestContext,Template
+from django.template import Context, RequestContext, Template
 from django.template.loader import get_template
 from blog.models import Blog, Author, AuthorForm, BlogForm
 from blog.forms import AuthorForm2, BlogForm2
 import datetime,sys
 import cStringIO as StringIO
 from py_pil_validate2 import CreateValidateCode
+###learn_test
+from django.core.signals import request_finished
+from django.dispatch import receiver, Signal
+####
+
+###learn_test
+@receiver(request_finished)
+def my_callback(sender, **kwargs):
+    #print("Request finished! %s" % datetime.datetime.ctime(datetime.datetime.now()))
+    pass
+
 
 def get_client_info(request):
     client_info = {}
@@ -29,6 +40,7 @@ def get_client_info(request):
     return client_info
 
 def welcome(request):
+    login_required_(request)
     template = get_template("blog_welcome.html")
     content = RequestContext(request, {
             'title': 'welcome',
@@ -43,7 +55,15 @@ def login(request):
     if request.method == "POST":
         if request.POST['Username'] and request.POST['Password']\
                 and request.POST['Validate']:
-            return HttpResponse("login susscued!")
+            if request.POST['Username'] == "admin" and\
+                    request.POST['Password'] == "admin":
+                resp_out = HttpResponse("login susscued!")
+                resp_out.set_cookie('hello', 'world')
+                resp_out.flush()
+                #return resp_out
+                return HttpResponseRedirect("/blog/")
+            else:
+                return HttpResponseRedirect("#")
         else:
             return HttpResponseRedirect("/blog/login/")
     else:
@@ -56,16 +76,32 @@ def login(request):
         output = template.render(content)
         return HttpResponse(output)
 
-def login_required(function=None, redirect_field_name=None, login_url=None):
-    pass
+def logout(request):
+    is_admin = request.COOKIES.get('hello', "")
+    if is_admin:
+        print is_admin
+        html = HttpResponse()
+        html.delete_cookie('hello')
+        del html['hello']
+        html.close()
+        return html
+    return HttpResponseRedirect("/blog/")
+
+def login_required_(request, function=None, redirect_field_name=None, login_url=None):
+    if request.COOKIES.get('hello', ''):
+        print "request.COOKIES['hello']:", request.COOKIES['hello']
+        return
+    else:
+        return HttpResponseRedirect('/blog/login/')
 
 
 def index(request):
+    login_required_(request)
     template = get_template("blog_list.html")
     latest_blog_list = Blog.objects.order_by('-publish_time')[:3]
     content = RequestContext(request, {
             'title': 'index_list',
-            'menus': ('index', 'list', 'add', 'authoradd', 'del', 'update', 'admin',),
+            'menus': ('index', 'login', 'list', 'add', 'authoradd', 'del', 'update', 'admin',),
             'blogs': latest_blog_list,
             'client_info': get_client_info(request),
             })
@@ -145,7 +181,6 @@ def author_add(request):
     form = None
     if request.method == "POST":
         if request.POST['name'] and request.POST['email'] and request.POST['website']:
-            
             form = AuthorForm(request.POST)
             if form.is_valid():
                 form_data = form.cleaned_data
@@ -172,7 +207,7 @@ def author_add(request):
                     'body': '',
                     'author_form': AuthorForm(),
                     })
-            return HttpResponse(template.render(content))            
+            return HttpResponse(template.render(content))
     else:  ###method is get
         content = RequestContext(request, {
                 'title': 'author_add',
@@ -191,6 +226,22 @@ def blog_del(request):
             'client_info': get_client_info(request),
             })
     return HttpResponse(template.render(content))
+
+def blog_detail(request, id=1):
+    try:
+        blog_choice = Blog.objects.get(id=id)
+    except Blog.DoesNotExist:
+        raise Http404
+    template = get_template("blog_detail.html")
+    content = RequestContext(request, {
+            'title': 'blog_detail',
+            'menus': ('index', 'list', 'add', 'admin'),
+            'blog': blog_choice,
+            'blog_form': BlogForm(),
+            'client_info': get_client_info(request),
+            })
+    return HttpResponse(template.render(content))
+
 
 def blog_update(request):
     return HttpResponse("blog_update")
@@ -217,3 +268,5 @@ def current_now(request):
 def test(request):
     return HttpResponse("<html><title>test</title><body><h2>we will come soon!</h2></body></html>")
 
+def test_css(request):
+    return render_to_response("blog/test_css.html", {'body': ""})

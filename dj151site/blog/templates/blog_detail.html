@@ -1,0 +1,43 @@
+{% extends "base_html5.html" %}
+
+{% block body %}
+{% if authors %}
+<br />You have {{ authors|length }} author(s)
+{% endif %}
+{% if blog %}
+<span class="fix_table">Here have {{ blog|length }} blog(s)</span>
+{% endif %}
+<table id="content">
+  {% if blog %}
+  <tr><th>no</th><td>{{ blog.pk }}</td></tr>
+  <tr><th>caption</th><td>{{ blog.caption }}</td></tr>
+  <tr><th>author</th><td>{{ blog.author }}</td></tr>
+  <tr><th>content</th><td>{{ blog.content }}</td></tr>
+  <tr><th>tag</th><td>{% if blog.tags %}<ol>{% for tag123 in blog.tags.all %}<li>{{ tag123 }}</li>{% endfor %}</ol>{% endif %}</td></tr>
+  <tr><th>publish_time</th><td>{{ blog.publish_time }}</td></tr>
+  <tr><th>update_time</th><td>{{ blog.update_time }}</td></tr>
+  {% endif %}
+</table>
+<!-- 在列表详情中进行编辑：默认此栏为隐藏，点击按钮后可见，提交后用AJAS提交到服务器，再次隐藏 -->
+{% if blog_form %}
+<form id="default_hide" class="my-form" action="" method=post>{% csrf_token %}
+  <table>
+    {{ blog_form }}
+  </table>
+  <input type="submit" name="post" value="OK"/>
+</form>
+{% endif %}
+
+{% endblock %}
+
+<script language="javascript">
+document.getElementsByClass("my-form").hide();
+/*
+var a = document.getElementsById("default_hide");
+var c
+for (var i = 0; i < a.length; i++) {
+  c = (c == "form_odd")? "form_even":"form_odd";
+  a[i].className = c
+}
+*/
+</script>

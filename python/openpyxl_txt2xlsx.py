@@ -12,8 +12,8 @@
 ----------------------lineMax=65535-----
 time is Mon Jul 29 18:28:17 2013, beginning......
 
-end@ Mon Jul 29 18:32:36 2013 
-save@ Mon Jul 29 18:29:17 2013 
+end@ Mon Jul 29 18:32:36 2013
+save@ Mon Jul 29 18:29:17 2013
 start@ Mon Jul 29 18:28:17 2013
 inst1.save_book()保存XLSX文件时很慢?????????????
 xlsx为2007格式，同样包括65535条记录，文件大小为3.1M

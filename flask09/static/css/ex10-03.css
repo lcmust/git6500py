@@ -191,3 +191,57 @@ tr {
 .form_odd {
 	background-color:#ddeedd;
 }
+
+table {
+    border: solid 2px rgb(00, 200, 100);
+    border-collapse: collapse;
+    background-color: rgb(240, 240, 240);
+    padding: 1px;
+	margin-left: 20pt;
+	margin-right: 20pt;
+	//width: 800px;
+	//????align: center;
+}
+
+table th {
+    border: solid 1px rgb(110, 110, 110);
+    color: black;
+	//background-color: rgb(150, 150, 200);
+}
+
+table tr {
+    background-color: rgb(230, 250, 235);
+}
+
+table td {
+    border: solid 1px rgb(240, 240, 240);
+    //background-color: rgb(240, 240, 240);
+    color: black;
+}
+
+
+table.content {
+    border: solid 2px rgb(00, 200, 100);
+    border-collapse: collapse;
+    background-color: rgb(240, 240, 240);
+    padding: 20px;
+	width: 800px;
+}
+
+table.content tr {
+	border: solid 1px rgb(110, 110, 100);
+    //background-color: rgb(230, 250, 235);
+    color: blue;
+}
+
+table.content th {
+    border: solid 1px rgb(110, 110, 110);
+    //background-color: rgb(200, 200, 200);
+    color: black;
+}
+
+table.content td {
+    border: solid 1px rgb(160, 160, 160);
+    //background-color: rgb(240, 248, 255);
+    color: black;
+}

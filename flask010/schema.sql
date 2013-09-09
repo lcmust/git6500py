@@ -7,5 +7,3 @@ create table entries (
 	modifi_datetime date,
 	auth string
 );
-insert into entries (title, text, auth) values('first title', 'contents of first title', 'admin')
-insert into entries (title, text, auth) values('second title', 'contents of second title', 'admin')
