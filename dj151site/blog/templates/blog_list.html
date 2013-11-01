@@ -4,9 +4,12 @@
 {% if authors %}
 <span class="fix_table">You have {{ authors|length }} author(s)</span>
 {% endif %}
+
 {% if blogs %}
 <span class="fix_table">Here have {{ blogs|length }} blog(s)</span>
 {% endif %}
+<button onclick="">add</button>
+<button onclick="">del</button>
 <table class="content">
   <tr><th>choice</th><th>caption</th><th>tags</th><th>publish_time</th></tr>
   {% for blog in blogs %}
@@ -25,15 +28,3 @@
   {% endfor %}
 </table>
 {% endblock %}
-
-
-<script language="javascript">
-/*
-var a = document.getElementsByTagName("tr");
-var c
-for (var i = 0; i < a.length; i++) {
-  c = (c == "form_odd")? "form_even":"form_odd";
-  a[i].className = c
-}
-*/
-</script>

@@ -23,6 +23,7 @@ urlpatterns = patterns('',
 
                        url(r'^blog/', include('blog.urls')),
                        url(r'^logs/', include('logs.urls')),
+                       url(r'^polls/', include('polls.urls', namespace="polls")),
                        #url(r'^blog/', 'blog.views.home'),
                        #url(r'^author/', include('blog.urls')),
                        )

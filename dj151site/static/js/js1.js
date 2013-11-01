@@ -75,6 +75,10 @@ function loadAjax() {
     $("#myDiv").html(htmlobj.responseText);
 }
 
+function show_cookie() {
+    alert(document.cookie);
+}
+
 function js_test() {
     alert("aaaa");
 }

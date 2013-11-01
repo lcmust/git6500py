@@ -22,10 +22,10 @@
       {% endfor %}
       </ul>
     <span id="clock" size="35"></span>
-    <!--
+
     <button id="clock1" onclick="window.clearInterval(noClock)">Stop Clock</button>
     <button id="clock2" onclick="noClock=window.setInterval('clock()', 1000)">Continue Clock</button>
-    -->
+    <button id="test" onclick="show_cookie()">show_cookie</button>
     </div>
 
     {% block msg_errors %}
@@ -46,13 +46,13 @@
     <!-- for develop of css test!!!!
     <span class="fix_table">here is contents.</span>
     -->
-    <img src="/static_blog/img/news1.gif" alt='news.gif' id='news_gif' class="fix_table"/>
     <br />
     {% block body %}
     {% endblock %}
 
     {% block body2 %}
-    <table class="content"><!-- id="table_test" -->
+    <!-- only for learn
+    <table class="content">
       <tr><th>h1</th><th>h2</th><th>h3</th></tr>
       <tr><td>d1</td><td>d2</td><td>d3</td></tr>
       <tr><td>e1</td><td>e2</td><td>d3</td></tr>
@@ -61,6 +61,7 @@
       <tr><td>d1</td><td>d2</td><td>d3</td></tr>
       <tr><td>e1</td><td>e2</td><td>d3</td></tr>
     </table>
+    -->
     {% endblock %}
 
     {% block client_info %}
@@ -85,3 +86,10 @@
 
   </body>
 </html>
+
+
+
+
+
+
+END
