@@ -267,5 +267,9 @@ def test(request):
 def test_css(request):
     return render_to_response("test_css.html", {'body': ""})
 
-def test_js(request):
-    return render_to_response("test_js.html", {'body': ""})
+def test_js(request, template_name=None):
+    if not template_name:
+        template_name = "test_js"
+    else:
+        template_name = "test_" + template_name
+    return render_to_response(template_name + ".html", {'body': ""})

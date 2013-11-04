@@ -1,4 +1,4 @@
-#!/usr/bin/env python 
+#!/usr/bin/env python
 #coding=utf-8
 import sys, urllib2
 if (len(sys.argv) > 1):

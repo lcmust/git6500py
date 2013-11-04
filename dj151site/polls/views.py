@@ -79,3 +79,8 @@ class AboutView(generic.TemplateView):
     template_name = "polls/about.html"
 
 
+class MyView(generic.base.View):
+    def get(self, request):
+        return HttpResponse('result')
+
+

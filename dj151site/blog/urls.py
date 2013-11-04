@@ -21,5 +21,5 @@ urlpatterns = patterns('blog.views',
                        url(r'^now/$', 'current_now', name="now"),
                        url(r'^test/$', 'test'),
                        url(r'test_css/$', 'test_css'),
-                       url(r'test_js/$', 'test_js'),
+                       url(r'testjs/(?P<template_name>\w+)?$', 'test_js'),
                        )

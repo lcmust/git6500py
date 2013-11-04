@@ -101,7 +101,7 @@ class CookieAuthCrack():
         if post_data['other']:
             for other_key in post_data['other']:
                 self.post_dict[other_key] = post_data[other_key]
-                
+
         if self.csrfM != "not found":
             self.post_dict['csrfmiddlewaretoken'] =  self.csrfM
         """
