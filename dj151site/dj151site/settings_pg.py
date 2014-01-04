@@ -13,13 +13,15 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'django_sql3.db',
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': '',
-        'PORT': '',
-    }
+        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        # 'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'django',                      # Or path to database file if using sqlite3.
+        # The following settings are not used with sqlite3:
+        'USER': 'django',
+        'PASSWORD': 'django',
+        'HOST': '127.0.0.1',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+        'PORT': '',                      # Set to empty string for default.
+    },
 }
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
@@ -136,7 +138,8 @@ TEMPLATE_DIRS = (
     # os.path.join(HERE, 'templates'),
     #'/home/love/git6500py/dj151site/templates/',
     os.path.join(os.path.dirname(__file__), 'templates').replace('\\', '/'),
-    )
+	
+)
 
 INSTALLED_APPS = (
     'django.contrib.auth',

@@ -1,0 +1,9 @@
+{# {% extends "base.html" %} #}
+{% block content %}
+<h2>Poll</h2>
+<ul>
+  {% for poll in my_favourite_polls %} {# object_list %} #}
+  <li>{{ poll.question }} {{ poll.pub_date }}</li>
+  {% endfor %}
+</ul>
+{% endblock %}

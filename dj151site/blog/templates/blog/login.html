@@ -1,0 +1,14 @@
+{% extends "blog/base.html" %}
+
+{% block body %}
+<form class="" method="post" action="">{% csrf_token %}
+<ul class="login">
+  <li>username<input type="text" name="Username" id="id_user" value="" /></li>
+  <li>password<input type="password" name="Password" id="id_pwd" value="" /></li>
+  <li>validate<input type="text" name="Validate" id="id_validate" value="" /><img id="validate_img" src="#" />
+  <li><input type="submit" name="Submit" value="OK" /></li>
+</ul>
+</form>
+<div id="myDiv"><h3>Let AJAX change this text</h3></div>
+<button type="button" onclick="loadAjax()">Ajax now</button>
+{% endblock %}

@@ -7,6 +7,7 @@ dic1 = {'user': 'username',
 class Countdown(object):
     def __init__(self, n):
         self.n = n
+
     def next(self):
         r = self.n
         self.n += 1
@@ -34,4 +35,3 @@ if __name__ == "__main__":
     # resu = make_dict(dic1)
     # print resu, "type:%s" % type(resu)
     learn_func("list1", "list2", usr = "user1", pwd = "Password1")
-    print "OVER"

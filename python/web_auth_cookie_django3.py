@@ -69,7 +69,7 @@ class CookieAuthCrack():
             self.ckjar.filename = filename
             self.ckjar.load()
 
-    def crack(self, url=None, username=None, *pwd_list):
+    def crack(self, url=None, username=None, pwd_list=None):
         if not url:
             url = self.url11
         if not pwd_list:
@@ -93,7 +93,7 @@ class CookieAuthCrack():
                 response = self.opener.open(req, pwd_encode)
             except urllib2.HTTPError, e:
                 print "at opener.open, raise ERROR (", e, ") "
-                return
+                return False
             response_resu = response.getcode()
             if response_resu == 200:
                 response_html = response.read()

@@ -1,0 +1,13 @@
+{% extends "blog/base.html" %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block body %}
+{# <img src="/static_blog/img/news1.gif" alt='news.gif' id='news_gif' class="fix_table"/> #}
+<img src="/static/blog/news1.gif" alt='news.gif' id='news_gif' class="fix_table"/>
+<span class="fix_table">{{ body }}</span>
+{% endblock %}
+
+

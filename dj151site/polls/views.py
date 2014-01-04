@@ -6,6 +6,8 @@ from django.views import generic
 
 from polls.models import Poll, Choice
 
+from django.utils import timezone
+
 # def index(request):
 #     latest_poll_list = Poll.objects.all().order_by('-pub_date')[:5]
 #     context = {'latest_poll_list': latest_poll_list}
@@ -40,18 +42,31 @@ from polls.models import Poll, Choice
 class IndexView(generic.ListView):
     template_name = 'polls/index.html'
     context_object_name = 'latest_poll_list'
+
+    #def get_queryset(self):
+    #    return Poll.objects.order_by('-pub_date')[:5]
     def get_queryset(self):
-        return Poll.objects.order_by('-pub_date')[:5]
+        return Poll.objects.filter(pub_date__lte=timezone.now()
+                ).order_by('-pub_date')[:9]
 
 
 class DetailView(generic.DetailView):
-    model = Poll
+    #model = Poll
     template_name = "polls/detail.html"
 
+    def get_queryset(self):
+        return Poll.objects.filter(pub_date__lte=timezone.now())
+    
 
 class ResultsView(generic.DetailView):
     model = Poll
     template_name = "polls/results.html"
+
+class PollList(generic.ListView):
+    # model = Poll
+    context_object_name = "my_favourite_polls"
+    # queryset = Poll.objects.order_by('-pub_date')
+    queryset = Poll.objects.order_by()
 
 
 def vote(request, poll_id):
@@ -67,13 +82,6 @@ def vote(request, poll_id):
         selected_choice.votes += 1
         selected_choice.save()
         return HttpResponseRedirect(reverse('polls:results', args=(p.id,)))
-
-def func_test():
-    a = "msg132"
-    if a:
-        print a
-    else:
-        print "Hello Python"
 
 class AboutView(generic.TemplateView):
     template_name = "polls/about.html"

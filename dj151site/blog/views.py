@@ -42,7 +42,7 @@ def get_client_info(request):
 
 def welcome(request):
     login_required_(request)
-    template = get_template("blog_welcome.html")
+    template = get_template("blog/welcome.html")
     content = RequestContext(request, {
             'title': 'welcome',
             'menus': ('index', 'login', 'list', 'add', 'authoradd', 'del', 'update', 'admin',),
@@ -69,7 +69,7 @@ def login(request):
         else:
             return HttpResponseRedirect("/blog/login/")
     else:
-        template = get_template("blog_login.html")
+        template = get_template("blog/login.html")
         content = RequestContext(request, {
                 'title': 'login',
                 'menus': ('index',),
@@ -99,7 +99,7 @@ def login_required_(request, function=None, redirect_field_name=None, login_url=
 
 def index(request):
     login_required_(request)
-    template = get_template("blog_list.html")
+    template = get_template("blog/bloglist.html")
     latest_blog_list = Blog.objects.order_by('-publish_time')[:3]
     content = RequestContext(request, {
             'title': 'index_list',
@@ -110,7 +110,7 @@ def index(request):
     return HttpResponse(template.render(content))
 
 def blog_list(request):
-    template = get_template("blog_list.html")
+    template = get_template("blog/bloglist.html")
     blogs = Blog.objects.all()
     authors = Author.objects.all()
     content = RequestContext(request, {
@@ -126,7 +126,7 @@ def blog_list(request):
 
 #@login_required
 def blog_add(request):
-    template = get_template("blog_add.html")
+    template = get_template("blog/blogadd.html")
 
     if request.method == "POST":
         if request.POST['caption']\
@@ -165,7 +165,7 @@ def blog_add(request):
     return HttpResponse(template.render(content))
 
 def author_add(request):
-    template = get_template("author_add.html")
+    template = get_template("blog/authoradd.html")
     form = None
     if request.method == "POST":
         if request.POST['name']\
@@ -210,7 +210,7 @@ def author_add(request):
         return HttpResponse(template.render(content))
 
 def blog_del(request, id=None):
-    template = get_template("blog_del.html")
+    template = get_template("blog/blogdel.html")
     if type(id) == int:
         latest_blog_list = Blog.objects.get(id=id)
     else:
@@ -228,7 +228,7 @@ def blog_detail(request, id=1):
         blog_choice = Blog.objects.get(id=id)
     except Blog.DoesNotExist:
         raise Http404
-    template = get_template("blog_detail.html")
+    template = get_template("blog/blogdetail.html")
     content = RequestContext(request, {
             'title': 'blog_detail',
             'menus': ('index', 'list', 'add', 'admin'),

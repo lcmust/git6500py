@@ -1,7 +1,7 @@
 #!/bin/bash
 # cmd: sudo this_file.sh
 #
-back_home=" .themes/ .tmux.conf .gitconfig .emacs .emacs_custom.el .emacs.bmk .hgrc .chengl6500.rc .rules_arptables.txt .rules_iptables.txt .vimrc .bashrc .zshrc .irssi .xinitrc .remmina/ .ssh/ .config/xfce4/ .config/Terminal/ .gnupg/"
+back_home=" .themes/ .tmux.conf .tmuxp/ .gitconfig .emacs .emacs_custom.el .emacs.bmk .hgrc .chengl6500.rc .rules_arptables.txt .rules_iptables.txt .vimrc .bashrc .zshrc .irssi .xinitrc .remmina/ .ssh/ .config/xfce4/ .config/Terminal/ .gnupg/"
 back_sys="fstab profile profile_golang.sh profile_jdk7u2.sh rc.local sudoers auto.misc auto.master xdg/ samba/ iet/ NetworkManager/ apt/ default/"
 bak_dir_home="/mnt/sda2h/tools/git1/git_config.bak/home_user/"
 bak_dir_sys="/mnt/sda2h/tools/git1/git_config.bak/sys_etc/"

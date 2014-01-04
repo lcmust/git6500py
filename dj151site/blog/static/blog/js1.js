@@ -58,7 +58,7 @@ $(document).ready(function() {
 function rotateBanner() {
     if (++bannerNum > 4)
         bannerNum = 1;
-    document.getElementById("news_gif").src = "/static_blog/img/news" + bannerNum + ".gif";
+    document.getElementById("news_gif").src = "/static/blog/news" + bannerNum + ".gif";
     window.setTimeout('rotateBanner();', 4000);
     //alert("Hello");
 
