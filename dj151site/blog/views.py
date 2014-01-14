@@ -7,7 +7,7 @@ from django.views.decorators.cache import never_cache
 from django.shortcuts import render_to_response
 from django.template import Context, RequestContext, Template
 from django.template.loader import get_template
-from blog.models import Blog, Author, AuthorForm, BlogForm
+from blog.models import Blog, Author, Tag, AuthorForm, BlogForm
 from blog.forms import AuthorForm2, BlogForm2
 import datetime,sys
 import cStringIO as StringIO
@@ -138,9 +138,12 @@ def blog_add(request):
                     'body': '',
                     }
             tmp = Blog(caption=request.POST['caption'],
-                       author=author1,
+                       author=Author.objects.get(id=request.POST['author']), #author1,
+                       #print type(request.POST['tags']),
                        content=request.POST['content'],
                        publish_time=datetime.datetime.now())
+            print type(request.POST['tags'])
+            print request.POST['tags']
             tmp.save()
             content = RequestContext(request, cont)
             return HttpResponseRedirect('/blog/list')
@@ -211,21 +214,31 @@ def author_add(request):
 
 def blog_del(request, id=None):
     template = get_template("blog/blogdel.html")
-    if type(id) == int:
+    if id:
+        print("will to find: ", id)
+    try:
         latest_blog_list = Blog.objects.get(id=id)
+    except Blog.DoesNotExist:
+        raise Http404
     else:
-        print("can't find id(%d)", id)
+        print "dev test1:", latest_blog_list.caption
+        print "dev test2:", latest_blog_list.pk
     content = RequestContext(request, {
             'title': 'blog_del',
             'menus': ('index', 'list', 'add', 'authoradd', 'del', 'update', 'admin',),
-            'blogs': latest_blog_list,
+            'blog': latest_blog_list,
             'client_info': get_client_info(request),
             })
     return HttpResponse(template.render(content))
 
 def blog_detail(request, id=1):
     try:
-        blog_choice = Blog.objects.get(id=id)
+        if type(id) == int:
+            print "id is %d" % id
+        else:
+            print "id is:", id
+
+        blog_choice = Blog.objects.get(id=int(id))
     except Blog.DoesNotExist:
         raise Http404
     template = get_template("blog/blogdetail.html")

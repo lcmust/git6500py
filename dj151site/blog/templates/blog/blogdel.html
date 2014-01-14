@@ -6,9 +6,17 @@
   {% for blog in blogs %}
   <tr><td>{{ blog.caption }}</td><td>{{ blog.author }}</td><td>{{ blog.tags.name }}</td><td>{{ blog.content }}</td><td>{{ blog.publish_time }}</td><td>{{ blog.update_time }}</td></tr>
   {% endfor %}
-</table>
-{% endblock %}
+  <tr><td>{{ blog.caption }}</td><td>{{ blog.author }}</td><td>{{ blog.tags }}</td><td>{{ blog.content }}</td><td>{{ blog.publish_time }}</td><td>{{ blog.update_time }}</td></tr>
 
+
+</table>
+
+  {% if blog %}
+<h1>{{ blog }}</h1>
+  {% else %}
+<h2>no data</h2>
+  {% endif %}
+ </a>
 
 <script language="javascript">
 /*
@@ -20,3 +28,4 @@ for (var i = 0; i < a.length; i++) {
 }
 */
 </script>
+{% endblock %}
