@@ -17,15 +17,15 @@ username = 'admin'
 #headers['Authorization'] = base64.b64encode(username+":"+password)
 
 def hack_web(Url, User, Passwd, Agent):
-    Headers = {'User-Agent':Agent, \
-   'Authorization': \
-   "Basic "+base64.b64encode(User+":"+Passwd)}
+    Headers = {'User-Agent': Agent,
+               'Authorization': "Basic "+base64.b64encode(User+":"+Passwd)
+               }
     req = urllib2.Request(url=Url, headers=Headers)
-    #print Headers
-    #print User," ", Passwd
+    # print Headers
+    # print User," ", Passwd
     try:
         respon = urllib2.urlopen(req)
-    except (urllib2.HTTPError, urllib2.URLError),e:
+    except (urllib2.HTTPError, urllib2.URLError), e:
         #print e   """for debug"""
         return
     return respon

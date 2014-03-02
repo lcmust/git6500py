@@ -24,7 +24,9 @@ s.listen(1)
 print "Server is running on port %d, press Ctrl+C to terminate." % port
 while 1:
     clientsock, clientaddr = s.accept()
-    #print "Got connection from:", clientsock.getpeername()
+    print "Server is:", clientsock.getsockname()
+    print "New connection from:", clientsock.getpeername()
+    # print "clientaddr:%s" % str(clientaddr) 
     clientfile = clientsock.makefile("rw", 0)
     clientfile.write("Welcome, " + str(clientaddr) + "\n")
     clientfile.write("PLease enter a string:")
@@ -32,3 +34,4 @@ while 1:
     clientfile.write("You entered %d characterts.\n" % len(line))
     clientfile.close()
     clientsock.close()
+    print str(clientaddr) + "connecting is closed."

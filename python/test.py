@@ -17,3 +17,25 @@ class Message2:
 
     def __repr__(self):
         return "Message: %s" % self.msg
+
+def foo(bar):
+    return bar + 1
+
+print foo(2) == 3
+
+def call_foo_with_arg(foo, arg):
+    return foo(arg)
+
+def parent(num):
+    def first_child():
+        return "Print from the first child() function."
+
+    def second_child():
+        return "Print from the second child() function."
+
+    try:
+        assert num == 10
+        return first_child
+    except AssertionError:
+        return second_child
+    
