@@ -31,6 +31,6 @@ if __name__ == "__main__":
     if (len(sys.argv) > 1):
         url_open = sys.argv[1]
     else:
-        url_open = "http://192.168.192.1/"
+        url_open = "http://192.168.192.1/index.asp"
     if url_open:
         test(url_open)

@@ -7,6 +7,7 @@ if len(sys.argv) > 2:
     req = urllib2.Request(sys.argv[1])
 else:
     req = urllib2.Request('http://localhost')
+
 try:
     fd = urllib2.urlopen(req)
 except urllib2.URLError, e:
